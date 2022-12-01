@@ -13,7 +13,7 @@ router.get('/get_all_users',(req, res) =>{
 
 });
 
-router.get('/get_user', async (req, res) =>{
+router.post('/login', async (req, res) =>{
     // console.log(req);
 
     const parameters = req.body;
@@ -40,14 +40,14 @@ router.get('/get_user', async (req, res) =>{
     .then(data => {
         const validator = encrypt.validate(password, data[0].password);
         if(validator){
-            res.json(data);
+            res.json({message: "Login exitoso"});
         }
         else{
             res.status(401);
-            res.json("Usuario o contraseña incorrectos");
+            res.json({message: "Usuario o contraseña incorrectos"});
         }
     }) 
-    .catch(error => res.json(error));
+    .catch(error => res.json({message: error}));
 
 });
 
