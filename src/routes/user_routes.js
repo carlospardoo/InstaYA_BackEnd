@@ -40,7 +40,7 @@ router.post('/login', async (req, res) =>{
     .then(data => {
         const validator = encrypt.validate(password, data[0].password);
         if(validator){
-            res.json({message: "Login exitoso"});
+            res.json({message: "Login exitoso", user: data[0]});
         }
         else{
             res.status(401);

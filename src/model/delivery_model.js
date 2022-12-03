@@ -10,7 +10,7 @@ const deliverySchema = mongoose.Schema({
         required: [true, "Seleccione la fecha de recogida"]
     },
     pickup_time:{
-        type: Date,
+        type: String,
         required: [true, "Seleccione la hora de recogida"]
     },
     pickup_city:{
