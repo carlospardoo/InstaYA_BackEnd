@@ -20,7 +20,7 @@ router.post('/login', async (req, res) =>{
     
     const username = parameters.username;
     const password = parameters.password;
-    console.log("get_user request: [ username="+username+", password="+password+" ]");
+    // console.log("get_user request: [ username="+username+", password="+password+" ]");
 
     // const encrypResult = await encrypt.encrypt(password);
     // // console.log(encrypResult);
@@ -61,8 +61,8 @@ router.post('/register_user', async (req, res) =>{
     };
     userSchema(dataMapper)
     .save()
-    .then(data => res.json(data))
-    .catch(error => res.json(error));
+    .then(data => res.json({message: "Usuario registrado", result:data}))
+    .catch(error => res.json({message: "Error: "+error}));
 });
 
 module.exports = router;

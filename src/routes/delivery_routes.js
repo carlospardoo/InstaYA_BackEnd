@@ -30,7 +30,6 @@ router.post('/add_delivery', (req, res) =>{
 });
 
 router.put('/update_delivery', (req, res) =>{
-
     deliverySchema
     .updateOne({_id: req.body.orden_entrega}, 
         {
@@ -56,7 +55,17 @@ router.get('/get_delivery', (req, res)=>{
     const id = req.query.id;
 
     deliverySchema
-    .findById(id)
+    .find({id_user: id})
+    .then(data => res.json(data))
+    .catch(err => res.json({message: err}));
+
+});
+
+router.get('/get_delivery_id', (req, res)=>{
+    const id = req.query.id;
+
+    deliverySchema
+    .findOne({_id: id})
     .then(data => res.json(data))
     .catch(err => res.json({message: err}));
 
